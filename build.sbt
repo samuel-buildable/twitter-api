@@ -31,6 +31,7 @@ libraryDependencies ++= Seq(
   "org.typelevel"         %% "cats-effect"            % "3.2.1",
   "org.http4s"            %% "http4s-dsl"             % "0.23.0",
   "org.http4s"            %% "http4s-blaze-server"    % "0.23.0",
+  "org.http4s"            %% "http4s-blaze-client"    % "0.23.0",
   "org.http4s"            %% "http4s-circe"           % "0.23.0",
   "org.flywaydb"           % "flyway-core"            % "6.0.7",
   "tf.tofu"               %% "derevo-cats"            % "0.12.5",
