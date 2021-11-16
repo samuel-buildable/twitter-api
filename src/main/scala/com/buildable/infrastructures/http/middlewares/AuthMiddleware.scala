@@ -19,9 +19,9 @@ object TwitterAuthMiddleware {
   ): Either[TwitterAuthError, Unit]                 =
     for {
       _ <- req.headers
-              .get(CIString("Buildable"))
-              .map(_.head.value)
-              .toRight(TwitterAuthError.NoAuthHeader)
+             .get(CIString("Buildable"))
+             .map(_.head.value)
+             .toRight(TwitterAuthError.NoAuthHeader)
     } yield ()
 
   def apply(routes: HttpRoutes[IO]): HttpRoutes[IO] =
