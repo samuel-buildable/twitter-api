@@ -56,34 +56,15 @@ object TwitterClient {
             }
         }
 
-      override def getTweetsByUserId(userId: UserId, token: String): IO[TweetResponse]    =
-        IO.fromEither(Uri.fromString(baseUri + userId.value + "/tweets")).flatMap { uri =>
-          client
-            .run(
-              GET(
-                uri,
-                Authorization(
-                  Credentials.Token(
-                    AuthScheme.Bearer,
-                    token
-                  )
-                ),
-                Accept(MediaType.application.json)
-              )
-            )
-            .use { resp =>
-              resp.status match {
-                case Status.Ok =>
-                  resp
-                    .asJsonDecode[TweetResponse]
-                    .handleErrorWith(err => IO.raiseError(TweetError(err.getMessage)))
-                case st        =>
-                  IO.raiseError(
-                    TweetError(s"Unexpected status: ${Option(st.reason).getOrElse("Unknown")}")
-                  )
-              }
-            }
-        }
+      override def getTweetsByUserId(userId: UserId, token: String): IO[TweetResponse]    = {
+
+        /**
+          * TODO: Implement getTweetsByUserId
+          *
+          * Hint: You can check the implementation of getUserByUserName.
+          */
+        ???
+      }
     }
   }
 }

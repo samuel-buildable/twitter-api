@@ -1,7 +1,5 @@
 package com.buildable.domains
 
-import scala.util.control.NoStackTrace
-
 import com.buildable.infrastructures.ext.http4s.queryParam
 import com.buildable.infrastructures.ext.http4s.refined._
 
@@ -11,14 +9,9 @@ import derevo.derive
 import eu.timepit.refined.cats._
 import eu.timepit.refined.auto._
 import io.circe.refined._
-import eu.timepit.refined.types.numeric.PosInt
-import eu.timepit.refined.types.string.{NonEmptyString}
+import eu.timepit.refined.types.string.NonEmptyString
 import io.circe.{Decoder, Encoder, HCursor}
-import cats.effect.IO
 import io.estatico.newtype.macros.newtype
-
-import io.circe.Json
-import eu.timepit.refined.string
 
 object user {
   @derive(decoder, encoder, show)
@@ -44,9 +37,14 @@ object user {
       val dataCursor = cursor.downField("data")
       for {
         data <- dataCursor.as[User]
-        _     = println(s"data: $data")
       } yield UserResponse(data)
     }
+
+    /**
+      * TODO: Implement decoder in a different fashion
+      *
+      * Hint: Encoder.forProduct1("data")
+      */
   }
 
   // Query params, deriving option number two

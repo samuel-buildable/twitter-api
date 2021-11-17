@@ -30,26 +30,18 @@ final case class TwitterRoutes(twitterClient: TwitterClient) extends Http4sDsl[I
         .get(CIString("Authorization"))
         .map(_.head.value)
 
-      token match {
-        case Some(value) =>
-          Ok(
-            twitterClient
-              .getUserByUserName(
-                username.toDomain,
-                value
-              )
-          ).handleErrorWith(_ =>
-            InternalServerError(
-              "Something went wrong while trying to get the user"
-            )
-          )
-        case None        => Forbidden()
-      }
+      /**
+        * TODO: Implement users route
+        *
+        * Hint: You can check how the tweets route below is implemented.
+        */
+      ???
 
     case req @ GET -> Root / "tweets" :? UserQueryParam(userid) =>
       val token = req.headers
         .get(CIString("Authorization"))
         .map(_.head.value)
+
       token match {
         case Some(value) =>
           Ok(
